@@ -320,7 +320,7 @@ local function ParkOwnedVehicle(veh, garageName, vehLocation, plate)
     if Config.FuelScript then
         totalFuel = exports[Config.FuelScript]:GetFuel(veh)
     else
-        totalFuel = exports['LegacyFuel']:GetFuel(veh) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
+        totalFuel = exports['cdn-fuel']:GetFuel(veh) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
     end
 
     local canPark, closestLocation = CanParkVehicle(veh, garageName, vehLocation)
@@ -618,7 +618,7 @@ local function UpdateVehicleSpawnerSpawnedVehicle(veh, garage, heading, cb)
     if Config.FuelScript then
         exports[Config.FuelScript]:SetFuel(veh, 100)
     else
-        exports['LegacyFuel']:SetFuel(veh, 100) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
+        exports['cdn-fuel']:SetFuel(veh, 100) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
     end
     TriggerEvent("vehiclekeys:client:SetOwner", plate)
     TriggerServerEvent("qb-garage:server:UpdateSpawnedVehicle", plate, true)
@@ -661,7 +661,7 @@ function UpdateSpawnedVehicle(spawnedVehicle, vehicleInfo, heading, garage, prop
         if Config.FuelScript then
             exports[Config.FuelScript]:SetFuel(spawnedVehicle, 100)
         else
-            exports['LegacyFuel']:SetFuel(spawnedVehicle, 100) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
+            exports['cdn-fuel']:SetFuel(spawnedVehicle, 100) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
         end
         TriggerEvent("vehiclekeys:client:SetOwner", plate)
         TriggerServerEvent("qb-garage:server:UpdateSpawnedVehicle", plate, true)
@@ -673,7 +673,7 @@ function UpdateSpawnedVehicle(spawnedVehicle, vehicleInfo, heading, garage, prop
         if Config.FuelScript then
             exports[Config.FuelScript]:SetFuel(spawnedVehicle, vehicleInfo.fuel)
         else
-            exports['LegacyFuel']:SetFuel(spawnedVehicle, vehicleInfo.fuel) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
+            exports['cdn-fuel']:SetFuel(spawnedVehicle, vehicleInfo.fuel) -- Don't change this. Change it in the  Defaults to legacy fuel if not set in the config
         end
 
         NetworkRequestControlOfEntity(spawnedVehicle)
@@ -936,6 +936,10 @@ RegisterNetEvent('qb-garages:client:addHouseGarage', function(house, garageInfo)
     garageInfo.vehicleCategories = Config.HouseGarageCategories
     Config.HouseGarages[house] = garageInfo
     HouseGarages[house] = garageInfo
+end)
+
+RegisterNetEvent('qb-garages:client:removeHouseGarage', function(house) -- ps-housing   
+    Config.HouseGarages[house] = nil
 end)
 
 AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
