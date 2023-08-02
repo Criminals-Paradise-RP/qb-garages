@@ -373,7 +373,7 @@ local function AddRadialParkingOption()
     if (veh and dist <= Config.VehicleParkDistance and Config.AllowParkingFromOutsideVehicle) or IsPedInAnyVehicle(ped) then
         MenuItemId1 = exports['qb-radialmenu']:AddOption({
             id = 'put_up_vehicle',
-            title = 'Park Vehicle',
+            title = 'Park In Garage',
             icon = 'square-parking',
             type = 'client',
             event = 'qb-garages:client:ParkVehicle',
