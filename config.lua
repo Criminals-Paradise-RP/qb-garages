@@ -64,7 +64,7 @@ Config.TrackVehicleByPlateCommandPermissionLevel = 'god' -- Permission level req
 
 -- NEW --
 
-
+Config.ShowNearestParkingOnly = true
 
 -- NEW --
 Config.SharedGangGarages = false -- Allow shared gang garages, if false, the player can only access their own vehicles
@@ -1455,6 +1455,7 @@ Config.Garages = {
         showBlip = false,
         blipName = "Police",
         blipNumber = 357,
+        blipcoords = vector3(449.57, -1024.85, 28.06),
         type = 'job',                --public, job, gang, depot
         vehicleCategories = {'emergency'},
         drawText = 'Parking',              --car, air, sea
@@ -1468,60 +1469,61 @@ Config.Garages = {
             vector4(435.41, -1026.74, 28.35, 3.84),
         }
     },
-    ['policevinewood'] = {
-        ['Zone'] = {
-            ['Shape'] = { --polygon that surrounds the parking area
-                vector2(635.9017944336, 22.776243209838),
-                vector2(631.24255371094, 20.99640083313),
-                vector2(577.78063964844, 37.087455749512),
-                vector2(575.10681152344, 41.017986297608),
-                vector2(593.0210571289, 39.446407318116)
-            },
-            ['minZ'] = 86.00,  -- min height of the parking zone
-            ['maxZ'] = 98.0,  -- max height of the parking zone
-        },
-        label = "Vinewood Police Station",
-        showBlip = false,
-        blipName = "Police",
-        blipNumber = 357,
-        type = 'job',                --public, job, gang, depot
-        vehicleCategories = {'emergency'},
-        drawText = 'Parking',              --car, air, sea
-        job = "police",
-        debug = false,
-        ['ParkingSpots'] = {
-            vector4(581.11, 38.73, 92.21, 265.09),
-            vector4(586.74, 37.68, 91.64, 260.63),
-            vector4(591.54, 36.7, 91.16, 256.37),
-            vector4(597.57, 34.71, 90.54, 250.52),
-            vector4(604.28, 32.61, 89.86, 251.49),
-            vector4(609.33, 30.9, 89.33, 251.35),
-            vector4(613.83, 29.36, 88.87, 251.19),
-            vector4(619.65, 27.35, 88.26, 250.98),
-            vector4(627.16, 24.64, 87.48, 247.88)
-        }
-    },
-    ['mechanic'] = {
-        ['Zone'] = {
-            ['Shape'] = { --polygon that surrounds the parking area
-                vector2(-321.17425537109, -166.47213745117),
-                vector2(-335.71780395508, -160.89682006836),
-                vector2(-330.77108764648, -147.37300109863),
-                vector2(-323.12185668945, -150.04736328125),
-                vector2(-322.16271972656, -148.189453125),
-                vector2(-315.29968261719, -150.44552612305)
-            },
-            ['minZ'] = 36.15,  -- min height of the parking zone
-            ['maxZ'] = 38.22,  -- max height of the parking zone
-            debug = false,
-        },
-        label = 'LS Customs',
-        type = 'job',
-        vehicleCategories = {'car', 'motorcycle', 'other'},
-        drawText = 'Parking',
-        job = 'mechanic',
-        debug = false
-    },
+    -- ['policevinewood'] = {
+    --     ['Zone'] = {
+    --         ['Shape'] = { --polygon that surrounds the parking area
+    --             vector2(635.9017944336, 22.776243209838),
+    --             vector2(631.24255371094, 20.99640083313),
+    --             vector2(577.78063964844, 37.087455749512),
+    --             vector2(575.10681152344, 41.017986297608),
+    --             vector2(593.0210571289, 39.446407318116)
+    --         },
+    --         ['minZ'] = 86.00,  -- min height of the parking zone
+    --         ['maxZ'] = 98.0,  -- max height of the parking zone
+    --     },
+    --     label = "Vinewood Police Station",
+    --     showBlip = false,
+    --     blipName = "Police",
+    --     blipNumber = 357,
+    --     blipcoords = vector(581.11, 38.73, 92.21),
+    --     type = 'job',                --public, job, gang, depot
+    --     vehicleCategories = {'emergency'},
+    --     drawText = 'Parking',              --car, air, sea
+    --     job = "police",
+    --     debug = false,
+    --     ['ParkingSpots'] = {
+    --         vector4(581.11, 38.73, 92.21, 265.09),
+    --         vector4(586.74, 37.68, 91.64, 260.63),
+    --         vector4(591.54, 36.7, 91.16, 256.37),
+    --         vector4(597.57, 34.71, 90.54, 250.52),
+    --         vector4(604.28, 32.61, 89.86, 251.49),
+    --         vector4(609.33, 30.9, 89.33, 251.35),
+    --         vector4(613.83, 29.36, 88.87, 251.19),
+    --         vector4(619.65, 27.35, 88.26, 250.98),
+    --         vector4(627.16, 24.64, 87.48, 247.88)
+    --     }
+    -- },
+    -- ['mechanic'] = {
+    --     ['Zone'] = {
+    --         ['Shape'] = { --polygon that surrounds the parking area
+    --             vector2(-321.17425537109, -166.47213745117),
+    --             vector2(-335.71780395508, -160.89682006836),
+    --             vector2(-330.77108764648, -147.37300109863),
+    --             vector2(-323.12185668945, -150.04736328125),
+    --             vector2(-322.16271972656, -148.189453125),
+    --             vector2(-315.29968261719, -150.44552612305)
+    --         },
+    --         ['minZ'] = 36.15,  -- min height of the parking zone
+    --         ['maxZ'] = 38.22,  -- max height of the parking zone
+    --         debug = false,
+    --     },
+    --     label = 'LS Customs',
+    --     type = 'job',
+    --     vehicleCategories = {'car', 'motorcycle', 'other'},
+    --     drawText = 'Parking',
+    --     job = 'mechanic',
+    --     debug = false
+    -- },
     ['apartments'] = {
         ['Zone'] = {
             ['Shape'] = { --polygon that surrounds the parking area
@@ -1541,6 +1543,10 @@ Config.Garages = {
 
         },
         label = 'Alta Apartments',
+        showBlip = true,
+        blipName = "Public Parking",
+        blipNumber = 357,
+        blipcoords = vector3(-297.72, -990.1, 31.08),
         type = 'public',
         vehicleCategories = {'car', 'motorcycle', 'other'},
         drawText = 'Parking',
@@ -1672,6 +1678,10 @@ Config.Garages = {
             ['maxZ'] = 39.0,  -- max height of the parking zone
         },
         label = 'City Hall Parking',
+        showBlip = true,
+        blipName = "Public Parking",
+        blipNumber = 357,
+        blipcoords = vector3(-475.26, -219.26, 36.05),
         type = 'public',
         vehicleCategories = {'car', 'motorcycle', 'other'},
         drawText = 'Parking',
@@ -1701,6 +1711,10 @@ Config.Garages = {
 
         },
         label = 'Front of MRPD',
+        showBlip = false,
+        blipName = "Police Parking",
+        blipNumber = 357,
+        blipcoords = vector3(407.44, -997.7, 28.94),
         type = 'job',
         job = "police",
         vehicleCategories = {'emergency'},
@@ -1728,6 +1742,10 @@ Config.Garages = {
             ['maxZ'] = 27.0,  -- max height of the parking zone
         },
         label = 'MRPD Garage',
+        showBlip = false,
+        blipName = "Police Parking",
+        blipNumber = 357,
+        blipcoords = vector3(445.67, -997.0, 24.81),
         type = 'job',
         job = "police",
         --useVehicleSpawner = false,
