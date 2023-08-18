@@ -393,7 +393,7 @@ end
 local function AddRadialImpoundOption()
     MenuItemId1 = exports['qb-radialmenu']:AddOption({
         id = 'open_garage_menu',
-        title = 'Open Impound Lot',
+        title = 'Open Depot',
         icon = 'warehouse',
         type = 'client',
         event = 'qb-garages:client:OpenMenu',
@@ -1053,7 +1053,7 @@ end
 function CreateBlip(closestCoords)
     local blip = AddBlipForCoord(closestCoords)
     SetBlipSprite(blip, 357)
-    SetBlipScale(blip, 0.6)
+    SetBlipScale(blip, 0.8)
     SetBlipColour(blip, 3)
     SetBlipDisplay(blip, 4)
     SetBlipAsShortRange(blip, true)
