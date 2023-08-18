@@ -1305,57 +1305,57 @@ Config.Garages = {
     ['impoundlot'] = {
         ['Zone'] = {
             ['Shape'] = { --polygon that surrounds the parking area
-            vector2(-128.76565551758, -1186.7231445312),
-            vector2(-128.95680236816, -1158.9990234375),
-            vector2(-155.75888061524, -1158.6616210938),
-            vector2(-155.84657287598, -1186.7335205078)
+                vector2(-170.74731445312, -1161.7342529297),
+                vector2(-170.77941894531, -1186.3092041016),
+                vector2(-214.57759094238, -1186.3647460938),
+                vector2(-214.86138916016, -1160.8474121094)
             },
-            ['minZ'] = 22.25,  -- min height of the parking zone
+            ['minZ'] = 21.25,  -- min height of the parking zone
             ['maxZ'] = 26.31,  -- max height of the parking zone
             debug = false,
         },
-        label = "Impound Lot",
+        label = "Depot",
         showBlip = true,
-        blipcoords = vector3(-143.15, -1175.06, 23.77),
-        blipName = "LS Impound Lot",
+        blipcoords = vector3(-192.23, -1170.14, 23.16),
+        blipName = "LS Depot",
         blipNumber = 68,
         type = 'depot',                --public, job, gang, depot
         vehicleCategories = {'car', 'motorcycle', 'other'},
-        drawText = 'Impound',                 --car, air, sea
+        drawText = 'Depot',                 --car, air, sea
         debug = false,
         ['ParkingSpots'] = {
-            vector4(-152.91, -1170.13, 23.14, 270.11),
-            vector4(-153.26, -1166.51, 23.14, 270.74),
-            vector4(-147.67, -1161.83, 23.14, 179.67),
-            vector4(-144.19, -1161.83, 23.14, 179.02),
-            vector4(-139.1, -1161.6, 23.14, 178.95),
-            vector4(-131.92, -1166.54, 23.14, 89.09),
-            vector4(-132.01, -1170.05, 23.14, 90.24),
-            vector4(-132.03, -1175.15, 23.14, 90.94),
-            vector4(-131.99, -1178.68, 23.14, 90.07),
-            vector4(-131.95, -1182.25, 23.14, 90.11),
+            vector4(-184.04, -1174.13, 23.04, 199.5),
+            vector4(-187.59, -1174.01, 23.04, 201.94),
+            vector4(-191.15, -1173.96, 23.04, 197.52),
+            vector4(-194.65, -1173.81, 23.04, 201.85),
+            vector4(-198.14, -1173.76, 23.04, 206.89),
+            vector4(-177.81, -1165.98, 23.04, 176.76),
+            vector4(-173.3, -1165.97, 23.04, 177.82),
+            vector4(-205.65, -1168.2, 23.04, 180.02),
+            vector4(-209.02, -1168.12, 23.04, 178.87),
+            vector4(-212.72, -1168.05, 23.04, 178.24),
         }
     },
     ['sandyimpoundlot'] = {
         ['Zone'] = {
             ['Shape'] = { --polygon that surrounds the parking area
-            vector2(1677.4973144531, 3807.0942382812),
-            vector2(1659.8502197266, 3831.7404785156),
-            vector2(1599.5391845703, 3782.0939941406),
-            vector2(1616.3050537109, 3760.1345214844)
+                vector2(1677.4973144531, 3807.0942382812),
+                vector2(1659.8502197266, 3831.7404785156),
+                vector2(1599.5391845703, 3782.0939941406),
+                vector2(1616.3050537109, 3760.1345214844)
             },
             ['minZ'] = 32.25,  -- min height of the parking zone
             ['maxZ'] = 36.31,  -- max height of the parking zone
             debug = false,
         },
-        label = "Impound Lot",
+        label = "Depot",
         showBlip = true,
         blipcoords = vector3(1640.46, 3796.89, 34.83),
-        blipName = "Sandy Impound Lot",
+        blipName = "Sandy Depot",
         blipNumber = 68,
         type = 'depot',                --public, job, gang, depot
         vehicleCategories = {'car', 'motorcycle', 'other'},
-        drawText = 'Impound',                 --car, air, sea
+        drawText = 'Depot',                 --car, air, sea
         debug = false,
         ['ParkingSpots'] = {
             vector4(1639.08, 3804.51, 34.87, 218.54),
@@ -1371,23 +1371,23 @@ Config.Garages = {
     ['paletoimpoundlot'] = {
         ['Zone'] = {
             ['Shape'] = { --polygon that surrounds the parking area
-            vector2(-228.4748840332, 6173.775390625),
-            vector2(-180.96034240723, 6221.935546875),
-            vector2(-196.65040588379, 6236.7211914062),
-            vector2(-244.09364318848, 6188.9345703125)
+                vector2(-228.4748840332, 6173.775390625),
+                vector2(-180.96034240723, 6221.935546875),
+                vector2(-196.65040588379, 6236.7211914062),
+                vector2(-244.09364318848, 6188.9345703125)
             },
             ['minZ'] = 29.25,  -- min height of the parking zone
             ['maxZ'] = 33.31,  -- max height of the parking zone
             debug = false,
         },
-        label = "Impound Lot",
+        label = "Depot",
         showBlip = true,
         blipcoords = vector3(-218.6, 6200.34, 31.49),
-        blipName = "Paleto Impound Lot",
+        blipName = "Paleto Depot",
         blipNumber = 68,
         type = 'depot',                --public, job, gang, depot
         vehicleCategories = {'car', 'motorcycle', 'other'},
-        drawText = 'Impound',                 --car, air, sea
+        drawText = 'Depot',                 --car, air, sea
         debug = false,
         ['ParkingSpots'] = {
             vector4(-198.17, 6229.25, 31.5, 225.49),
@@ -1404,23 +1404,23 @@ Config.Garages = {
     ['vinewoodimpoundlot'] = {
         ['Zone'] = {
             ['Shape'] = { --polygon that surrounds the parking area
-            vector2(-535.81127929688, 71.124420166016),
-            vector2(-539.48413085938, 36.312835693359),
-            vector2(-516.376953125, 34.795608520508),
-            vector2(-513.84075927734, 70.480346679688)
+                vector2(-535.81127929688, 71.124420166016),
+                vector2(-539.48413085938, 36.312835693359),
+                vector2(-516.376953125, 34.795608520508),
+                vector2(-513.84075927734, 70.480346679688)
             },
             ['minZ'] = 50.25,  -- min height of the parking zone
             ['maxZ'] = 56.31,  -- max height of the parking zone
             debug = false,
         },
-        label = "Impound Lot",
+        label = "Depot",
         showBlip = true,
         blipcoords = vector3(-523.56, 57.25, 52.58),
-        blipName = "Vinewood Impound Lot",
+        blipName = "Vinewood Depot",
         blipNumber = 68,
         type = 'depot',                --public, job, gang, depot
         vehicleCategories = {'car', 'motorcycle', 'other'},
-        drawText = 'Impound',                 --car, air, sea
+        drawText = 'Depot',                 --car, air, sea
         debug = false,
         ['ParkingSpots'] = {
             vector4(-522.63, 45.83, 52.58, 87.31),
