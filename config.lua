@@ -105,7 +105,7 @@ Config.AllowSpawningFromAnywhere = true -- if set to true, the car can be spawne
 Config.AutoRespawn = false --True == auto respawn cars that are outside into your garage on script restart, false == does not put them into your garage and players have to go to the impound
 Config.WarpPlayerIntoVehicle = false -- True == Will Warp Player Into their vehicle after pulling it out of garage. False It will spawn on the parking lot / in front of them  (Global, can be overriden by each garage)
 Config.HouseParkingDrawText = 'Parking' -- text when driving on to the HOUSE parking lot
-Config.ParkingDistance = 2.0 -- Distance to the parking lot when trying to park the vehicle  (Global, can be overriden by each garage)
+Config.ParkingDistance = 4.0 -- Distance to the parking lot when trying to park the vehicle  (Global, can be overriden by each garage)
 Config.SpawnDistance = 4.5 -- The maximum distance you can be from a parking spot, to spawn a car (Global, can be overriden by each garage)
 Config.DepotPrice = 60.0 -- The price to take out a despawned vehicle from impound.
 Config.DrawTextPosition = 'left' -- location of drawtext: left, top, right
@@ -1524,6 +1524,112 @@ Config.Garages = {
     --     job = 'mechanic',
     --     debug = false
     -- },
+    ['spadesgarage'] = {
+        ['Zone'] = {
+            ['Shape'] = { -- Create a polyzone by using '/pzcreate poly', '/pzadd' and '/pzfinish' or '/pzcancel' to cancel it. the newly created polyzone will be in txData/QBCoreFramework_******.base/polyzone_created_zones.txt
+            vector2(970.556640625, -145.79412841797),
+            vector2(950.57409667969, -133.74298095703),
+            vector2(961.42529296875, -120.4400100708),
+            vector2(955.25201416016, -111.17942810059),
+            vector2(964.87902832031, -103.90780639648),
+            vector2(971.13079833984, -110.74059295654),
+            vector2(985.01287841797, -105.46112823486),
+            vector2(989.97650146484, -111.44864654541),
+            vector2(989.03546142578, -115.3166809082),
+            vector2(994.12261962891, -118.34564971924),
+            vector2(993.04187011719, -120.45440673828),
+            vector2(1003.1171875, -126.366065979),
+            vector2(1000.0947875977, -131.25875854492),
+            vector2(992.16198730469, -127.46084594727),
+            vector2(983.78680419922, -140.49078369141),
+            vector2(976.8232421875, -136.8205871582)
+            },
+            ['minZ'] = 72.5,  -- min height of the parking zone, cannot be the same as maxZ, and must be smaller than maxZ
+            ['maxZ'] = 76.0,  -- max height of the parking zone
+        },
+        label = 'Spades Garage', -- label displayed on phone
+        type = 'gang', -- 'public', 'job', 'depot' or 'gang'
+        showBlip = false, -- optional, when not defined, defaults to false
+        blipName = 'Spades Garage', -- otional
+        blipNumber = 84, -- optional, numbers can be found here: https://docs.fivem.net/docs/game-references/blips/
+        blipColor = 46, -- optional, defaults to 3 (Blue), numbers can be found here: https://docs.fivem.net/docs/game-references/blips/
+        blipcoords = vector3(985.95, -134.02, 78.89), -- blip coordinates
+        gang = 'spades', -- optional, same as job but for gangs, do not use both
+        vehicleCategories = {'car', 'motorcycle', 'other'}, -- categories defined in VehicleCategories
+        drawText = 'Parking', -- the drawtext text, shown when entering the polyzone of that garage
+        ["ParkingSpots"] = {
+            vector4(970.58, -139.12, 74.38, 53.98),
+            vector4(957.45, -129.07, 74.37, 239.25),
+            vector4(959.8, -126.02, 74.35, 279.88),
+            vector4(959.76, -113.68, 74.36, 224.25),
+            vector4(965.32, -108.33, 74.36, 220.67),
+            vector4(983.39, -134.01, 74.06, 325.96),
+            vector4(997.09, -126.98, 74.06, 78.51),
+        },
+        debug = false -- will show the polyzone and the parking spots, helpful when creating new garages. If too many garages are set to debug, it will not show all parking lots
+    },
+    ['cdtgarage'] = {
+        ['Zone'] = {
+            ['Shape'] = { -- Create a polyzone by using '/pzcreate poly', '/pzadd' and '/pzfinish' or '/pzcancel' to cancel it. the newly created polyzone will be in txData/QBCoreFramework_******.base/polyzone_created_zones.txt
+            vector2(495.7373046875, -2765.6926269531),
+            vector2(480.33337402344, -2755.5969238281),
+            vector2(493.25674438477, -2733.4968261719),
+            vector2(509.12417602539, -2743.2612304688)
+            },
+            ['minZ'] = 1.0,  -- min height of the parking zone, cannot be the same as maxZ, and must be smaller than maxZ
+            ['maxZ'] = 5.0,  -- max height of the parking zone
+        },
+        label = 'CDT Garage', -- label displayed on phone
+        type = 'gang', -- 'public', 'job', 'depot' or 'gang'
+        showBlip = false, -- optional, when not defined, defaults to false
+        blipName = 'CDT Garage', -- otional
+        blipNumber = 84, -- optional, numbers can be found here: https://docs.fivem.net/docs/game-references/blips/
+        blipColor = 46, -- optional, defaults to 3 (Blue), numbers can be found here: https://docs.fivem.net/docs/game-references/blips/
+        blipcoords = vector3(494.55, -2749.56, 3.07), -- blip coordinates
+        gang = 'cdt', -- optional, same as job but for gangs, do not use both
+        vehicleCategories = {'car', 'motorcycle', 'other'}, -- categories defined in VehicleCategories
+        drawText = 'Parking', -- the drawtext text, shown when entering the polyzone of that garage
+        ["ParkingSpots"] = {
+            vector4(494.72, -2738.48, 3.07, 188.45),
+            vector4(498.82, -2740.95, 3.07, 182.85),
+            vector4(503.18, -2743.7, 3.07, 173.15),
+            vector4(493.86, -2760.35, 3.07, 301.29),
+            vector4(488.75, -2757.14, 3.07, 292.87),
+            vector4(484.77, -2754.59, 3.07, 296.93),
+        },
+        debug = false -- will show the polyzone and the parking spots, helpful when creating new garages. If too many garages are set to debug, it will not show all parking lots
+    },
+    ['sakurasgarage'] = {
+        ['Zone'] = {
+            ['Shape'] = { -- Create a polyzone by using '/pzcreate poly', '/pzadd' and '/pzfinish' or '/pzcancel' to cancel it. the newly created polyzone will be in txData/QBCoreFramework_******.base/polyzone_created_zones.txt
+            vector2(1719.1840820312, -1604.7734375),
+            vector2(1738.0401611328, -1603.2698974609),
+            vector2(1744.5075683594, -1636.9444580078),
+            vector2(1726.7244873047, -1639.734375)
+            },
+            ['minZ'] = 110.0,  -- min height of the parking zone, cannot be the same as maxZ, and must be smaller than maxZ
+            ['maxZ'] = 114.0,  -- max height of the parking zone
+        },
+        label = 'Sakuras Garage', -- label displayed on phone
+        type = 'gang', -- 'public', 'job', 'depot' or 'gang'
+        showBlip = false, -- optional, when not defined, defaults to false
+        blipName = 'Sakuras Garage', -- otional
+        blipNumber = 84, -- optional, numbers can be found here: https://docs.fivem.net/docs/game-references/blips/
+        blipColor = 46, -- optional, defaults to 3 (Blue), numbers can be found here: https://docs.fivem.net/docs/game-references/blips/
+        blipcoords = vector3(1728.84, -1624.46, 112.43), -- blip coordinates
+        gang = 'sakuras', -- optional, same as job but for gangs, do not use both
+        vehicleCategories = {'car', 'motorcycle', 'other'}, -- categories defined in VehicleCategories
+        drawText = 'Parking', -- the drawtext text, shown when entering the polyzone of that garage
+        ["ParkingSpots"] = {
+            vector4(1723.81, -1616.36, 112.44, 327.69),
+            vector4(1738.1, -1624.8, 112.42, 60.07),
+            vector4(1741.01, -1632.24, 112.46, 42.03),
+            vector4(1736.37, -1632.99, 112.47, 43.34),
+            vector4(1730.83, -1634.36, 112.49, 39.66),
+            vector4(1726.18, -1635.52, 112.5, 358.71),
+        },
+        debug = false -- will show the polyzone and the parking spots, helpful when creating new garages. If too many garages are set to debug, it will not show all parking lots
+    },
     ['apartments'] = {
         ['Zone'] = {
             ['Shape'] = { --polygon that surrounds the parking area
