@@ -893,8 +893,9 @@ RegisterNetEvent('qb-garages:client:TakeOutGarage', function(data, cb)
     else
         if Config.SpawnVehiclesServerside then
             QBCore.Functions.TriggerCallback('qb-garage:server:spawnvehicle', function(netId, properties)
-                Wait(100)
-                local veh = NetToVeh(netId)
+                while not NetworkDoesNetworkIdExist(netId) do Wait(10) end
+                local veh = NetworkGetEntityFromNetworkId(netId)
+                Citizen.Await(CheckPlate(veh, vehicle.plate))
                 UpdateSpawnedVehicle(veh, vehicle, heading, garage, properties)
                 if cb then
                     cb(veh)
@@ -903,6 +904,7 @@ RegisterNetEvent('qb-garages:client:TakeOutGarage', function(data, cb)
                 garage.WarpPlayerIntoVehicle == nil)
         else
             QBCore.Functions.SpawnVehicle(vehicleModel, function(veh)
+                SetVehicleNumberPlateText(veh, vehicle.plate)
                 QBCore.Functions.TriggerCallback('qb-garage:server:GetVehicleProperties', function(properties)
                     UpdateSpawnedVehicle(veh, vehicle, heading, garage, properties)
                     if cb then
@@ -915,11 +917,66 @@ RegisterNetEvent('qb-garages:client:TakeOutGarage', function(data, cb)
     end
 end)
 
-function GetVehicleTypeFromModelOrHash(model)
-    model = type(model) == 'string' and joaat(model) or model
+function CheckPlate(vehicle, plateToSet)
+    local vehiclePlate = promise.new()
+    CreateThread(function()
+        while true do
+            Wait(500)
+            if GetVehicleNumberPlateText(vehicle) == plateToSet then
+                vehiclePlate:resolve(true)
+                return
+            else
+                SetVehicleNumberPlateText(vehicle, plateToSet)
+            end
+        end
+    end)
+    return vehiclePlate
+end
 
-    if model == submersible or model == submersible2 then
-        return 'submarine'
+-- Credits to esx_core and txAdmin for the list.
+local mismatchedTypes = {
+    [`airtug`] = "automobile", -- trailer
+    [`avisa`] = "submarine", -- boat
+    [`blimp`] = "heli", -- plane
+    [`blimp2`] = "heli", -- plane
+    [`blimp3`] = "heli", -- plane
+    [`caddy`] = "automobile", -- trailer
+    [`caddy2`] = "automobile", -- trailer
+    [`caddy3`] = "automobile", -- trailer
+    [`chimera`] = "automobile", -- bike
+    [`docktug`] = "automobile", -- trailer
+    [`forklift`] = "automobile", -- trailer
+    [`kosatka`] = "submarine", -- boat
+    [`mower`] = "automobile", -- trailer
+    [`policeb`] = "bike", -- automobile
+    [`ripley`] = "automobile", -- trailer
+    [`rrocket`] = "automobile", -- bike
+    [`sadler`] = "automobile", -- trailer
+    [`sadler2`] = "automobile", -- trailer
+    [`scrap`] = "automobile", -- trailer
+    [`slamtruck`] = "automobile", -- trailer
+    [`Stryder`] = "automobile", -- bike
+    [`submersible`] = "submarine", -- boat
+    [`submersible2`] = "submarine", -- boat
+    [`thruster`] = "heli", -- automobile
+    [`towtruck`] = "automobile", -- trailer
+    [`towtruck2`] = "automobile", -- trailer
+    [`tractor`] = "automobile", -- trailer
+    [`tractor2`] = "automobile", -- trailer
+    [`tractor3`] = "automobile", -- trailer
+    [`trailersmall2`] = "trailer", -- automobile
+    [`utillitruck`] = "automobile", -- trailer
+    [`utillitruck2`] = "automobile", -- trailer
+    [`utillitruck3`] = "automobile", -- trailer
+}
+
+function GetVehicleTypeFromModelOrHash(model)
+    model = type(model) == "string" and joaat(model) or model
+    if not IsModelInCdimage(model) then
+        return
+    end
+    if mismatchedTypes[model] then
+        return mismatchedTypes[model]
     end
 
     local vehicleType = GetVehicleClassFromName(model)
@@ -930,7 +987,7 @@ function GetVehicleTypeFromModelOrHash(model)
         [14] = "boat",
         [15] = "heli",
         [16] = "plane",
-        [21] = "train"
+        [21] = "train",
     }
 
     return types[vehicleType] or "automobile"
@@ -997,8 +1054,13 @@ end)
 RegisterNetEvent('qb-garages:client:TakeOutDepot', function(data)
     local vehicle = data.vehicle
     -- check whether the vehicle is already spawned
-    local vehExists = DoesEntityExist(OutsideVehicles[vehicle.plate]) or
-                          (not Config.SpawnVehiclesServerside and GetVehicleByPlate(vehicle.plate))
+    local vehExists = false
+    if not Config.SpawnVehiclesServerside then
+        local veh = GetVehicleByPlate(vehicle.plate)
+        if veh and (GetEntityHealth(veh) > Config.MinImpoundDamage and GetVehicleBodyHealth(veh) > Config.MinImpoundDamage) then
+            vehExists = true
+        end
+    end
     if not vehExists then
         local PlayerData = QBCore.Functions.GetPlayerData()
         if PlayerData.money['cash'] >= vehicle.depotprice or PlayerData.money['bank'] >= vehicle.depotprice then

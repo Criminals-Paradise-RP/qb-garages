@@ -211,8 +211,14 @@ QBCore.Functions.CreateCallback("qb-garage:server:GetGarageVehicles", function(s
                     end
                 end
                 for _, vehicle in pairs(result) do
-                    if Config.SpawnVehiclesServerside and GetVehicleByPlate(string.upper(vehicle.plate)) or not QBCore.Shared.Vehicles[vehicle.vehicle] then
+                    if not QBCore.Shared.Vehicles[vehicle.vehicle] then
                         goto skip
+                    end
+                    if Config.SpawnVehiclesServerside then
+                        local veh = GetVehicleByPlate(string.upper(vehicle.plate))
+                        if (veh and (GetVehicleBodyHealth(veh) > Config.MinImpoundDamage and GetEntityHealth(veh) > Config.MinImpoundDamage)) then
+                            goto skip
+                        end
                     end
                     if vehicle.depotprice == 0 then
                         vehicle.depotprice = Config.DepotPrice
@@ -450,7 +456,7 @@ QBCore.Functions.CreateCallback('qb-garages:server:GetPlayerVehicles', function(
                 else
                     fullname = VehicleData["name"]
                 end
-                local spot = json.decode(v.parkingspot)
+                local spot = v.parkingspot and json.decode(v.parkingspot) or nil
                 Vehicles[#Vehicles+1] = {
                     fullname = fullname,
                     brand = VehicleData["brand"],
